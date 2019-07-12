@@ -1,5 +1,15 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Main from './components/main';
+import { HashRouter as Router, Route } from 'react-router-dom';
+import home from './views/home';
+import search from './views/search';
+import item from './views/item';
 
-render(<Main />, document.getElementById('app'));
+render(
+  <Router>
+    <Route path="/" exact component={home} />
+    <Route path="/search" component={search} />
+    <Route path="/item" component={item} />
+  </Router>,
+  document.getElementById('app')
+);

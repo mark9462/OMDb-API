@@ -1,4 +1,8 @@
 import React from 'react';
 
-const footerComponent = () => <h1>Home</h1>;
+const footerComponent = () => (
+  <div className="bg-dark">
+    <p className="text-white">Copyright</p>
+  </div>
+);
 export default footerComponent;

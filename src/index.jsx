@@ -4,6 +4,7 @@ import { HashRouter as Router, Route } from 'react-router-dom';
 import home from './views/home';
 import search from './views/search';
 import item from './views/item';
+import './scss/main.scss';
 
 render(
   <Router>

@@ -56,47 +56,47 @@ class homePage extends Component {
       <div>
         <Header />
         <div className="container-fluid main-height">
-          <div className="main-vertical-align">
-            <h1 className="text-center mb-5">Let's find out...</h1>
-            <form
-              className="form-inline justify-content-around"
-              onSubmit={e => this.handleSubmit(e)}
-            >
-              <div className="form-group">
-                <span className="mr-1 mb-0 h5">Title:</span>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={this.state.title}
-                  onChange={e => this.titleChange(e)}
-                />
-              </div>
-              <div className="form-group">
-                <span className="mr-1 mb-0 h5">Year:</span>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={this.state.year}
-                  onChange={e => this.yearChange(e)}
-                />
-              </div>
-              <div className="form-group">
-                <select
-                  className="custom-select"
-                  value={this.state.type}
-                  onChange={e => this.typeChange(e)}
-                >
-                  <option>Type</option>
-                  <option value="movie">movie</option>
-                  <option value="series">series</option>
-                  <option value="episode">episode</option>
-                </select>
-              </div>
-              <div className="form-group">
-                <input className="btn btn-info" type="submit" value="Go" />
-              </div>
-            </form>
-          </div>
+          {/* <div className="main-vertical-align"> */}
+          <h1 className="text-center mb-5">Let's find out...</h1>
+          <form
+            className="form-inline justify-content-around"
+            onSubmit={e => this.handleSubmit(e)}
+          >
+            <div className="form-group">
+              <span className="mr-1 mb-0 h5">Title:</span>
+              <input
+                type="text"
+                className="form-control"
+                value={this.state.title}
+                onChange={e => this.titleChange(e)}
+              />
+            </div>
+            <div className="form-group">
+              <span className="mr-1 mb-0 h5">Year:</span>
+              <input
+                type="text"
+                className="form-control"
+                value={this.state.year}
+                onChange={e => this.yearChange(e)}
+              />
+            </div>
+            <div className="form-group">
+              <select
+                className="custom-select"
+                value={this.state.type}
+                onChange={e => this.typeChange(e)}
+              >
+                <option>Type</option>
+                <option value="movie">movie</option>
+                <option value="series">series</option>
+                <option value="episode">episode</option>
+              </select>
+            </div>
+            <div className="form-group">
+              <input className="btn btn-info" type="submit" value="Go" />
+            </div>
+          </form>
+          {/* </div> */}
         </div>
         <Footer />
       </div>

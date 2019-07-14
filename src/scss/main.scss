@@ -4,7 +4,7 @@
   transform: translateY(-50%);
 }
 @mixin height-vh($vh) {
-  height: $vh;
+  min-height: $vh;
 }
 .header-vertical-align {
   @include vertical-align(50%);

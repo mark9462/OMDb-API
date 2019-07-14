@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../components/header';
-// import Footer from '../components/footer';
+import Footer from '../components/footer';
 
 class searchPage extends Component {
   constructor(props) {
@@ -62,6 +62,7 @@ class searchPage extends Component {
             </div>
           )}
         </div>
+        <Footer />
       </div>
     );
   }

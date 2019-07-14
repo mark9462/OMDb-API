@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../components/header';
 import Footer from '../components/footer';
 
@@ -21,7 +22,6 @@ class searchPage extends Component {
         if (data.Response === 'True') {
           this.setState({ movieList: data });
         }
-        console.log(this.state.movieList);
       })
       .catch(error => console.error(error));
   };
@@ -49,16 +49,23 @@ class searchPage extends Component {
               <div className="alert alert-success" role="alert">
                 Search result:
               </div>
-              <div className="col-sm-6 col-md-4 col-lg-3">
-                <div className="card">
-                  <img className="card-img-top" src={movieList.Poster} />
-                  <div className="card-body">
-                    <h5 className="card-title book-title text-center">
-                      {movieList.Title}
-                    </h5>
+              <Link
+                to={{
+                  pathname: '/item',
+                  state: movieList
+                }}
+              >
+                <div className="col-sm-6 col-md-4 col-lg-3">
+                  <div className="card">
+                    <img className="card-img-top" src={movieList.Poster} />
+                    <div className="card-body">
+                      <h5 className="card-title book-title text-center">
+                        {movieList.Title}
+                      </h5>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
           )}
         </div>

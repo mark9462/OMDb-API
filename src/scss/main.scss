@@ -1,25 +1,9 @@
-@mixin vertical-align($top) {
-  top: $top;
-  position: relative;
-  transform: translateY(-50%);
-}
 @mixin height-vh($vh) {
   min-height: $vh;
 }
-.header-vertical-align {
-  @include vertical-align(50%);
-}
-.footer-vertical-align {
-  @include vertical-align(50%);
-}
-.main-vertical-align {
-  @include vertical-align(30%);
-}
-
 .main-height {
   @include height-vh(80vh);
 }
-
 .header-height {
   @include height-vh(10vh);
 }

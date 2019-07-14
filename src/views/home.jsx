@@ -47,7 +47,7 @@ class homePage extends Component {
 
     this.props.history.push({
       pathname: '/search',
-      search: params
+      state: params
     });
   }
 

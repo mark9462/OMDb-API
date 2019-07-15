@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/header';
 import Footer from '../components/footer';
+import apikey from '../apikey.json';
 
 class searchPage extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class searchPage extends Component {
   }
 
   getMovieList = (query) => {
-    fetch(`http://www.omdbapi.com/?apikey=8aff09d1&${query}`)
+    fetch(`http://www.omdbapi.com/?apikey=${apikey.key}&${query}`)
       .then(response => response.json())
       .then((data) => {
         this.setState({ getResponse: true });
@@ -37,7 +38,7 @@ class searchPage extends Component {
             state: list.imdbID
           }}
         >
-          <div className="card">
+          <div className="card mb-3">
             <img className="card-img-top" src={list.Poster} />
             <div className="card-body">
               <h5 className="card-title book-title text-center">
@@ -59,13 +60,13 @@ class searchPage extends Component {
       <div>
         <Header />
         <div className="container-fluid main-height">
+          <br />
           {message.length > 0 ? (
             <div className="main-vertical-align">
               <h1 className="text-center mb-5">{message}</h1>
             </div>
           ) : (
             <div>
-              <br />
               <div className="alert alert-success" role="alert">
                 Search result:
               </div>

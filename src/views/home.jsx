@@ -9,11 +9,11 @@ class homePage extends Component {
   }
 
   titleChange(e) {
-    this.setState({ title: e.target.value });
+    this.setState({ title: e.target.value.trim() });
   }
 
   yearChange(e) {
-    this.setState({ year: e.target.value });
+    this.setState({ year: e.target.value.trim() });
   }
 
   typeChange(e) {
@@ -24,8 +24,8 @@ class homePage extends Component {
     const { title, year, type } = this.state;
     const arrary = [];
     let params = '';
-    if (!title && !year && !type) {
-      alert('You must have key in something！');
+    if (!title) {
+      alert('You must have key in title！');
       return;
     }
     if (title) {

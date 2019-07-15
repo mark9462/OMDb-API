@@ -29,7 +29,7 @@ class homePage extends Component {
       return;
     }
     if (title) {
-      arrary.push(`t=${title}`);
+      arrary.push(`s=${title}`);
     }
     if (year) {
       arrary.push(`y=${year}`);

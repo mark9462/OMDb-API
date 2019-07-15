@@ -7,11 +7,13 @@ import apikey from '../apikey.json';
 class searchPage extends Component {
   constructor(props) {
     super(props);
-    this.state = { movieList: [], getResponse: false };
+    this.state = { movieList: [], getResponse: false, title: '' };
   }
 
   componentDidMount() {
     const query = this.props.location.state;
+    const qs = new URLSearchParams(query);
+    this.setState({ title: qs.get('s') });
     this.getMovieList(query);
   }
 
@@ -28,7 +30,7 @@ class searchPage extends Component {
   };
 
   render() {
-    const { movieList, getResponse } = this.state;
+    const { movieList, getResponse, title } = this.state;
     let message = '';
     const result = movieList.map(list => (
       <div className="col-sm-6 col-md-4 col-lg-3" key={list.imdbID}>
@@ -42,7 +44,6 @@ class searchPage extends Component {
             <img className="card-img-top" src={list.Poster} />
             <div className="card-body">
               <h5 className="card-title book-title text-center">
-                {' '}
                 {list.Title}
               </h5>
             </div>
@@ -51,26 +52,30 @@ class searchPage extends Component {
       </div>
     ));
     if (!getResponse) {
-      message = 'Loading...';
+      message = (
+        <div className="spinner-border" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
+      );
     }
     if (getResponse && movieList.length === 0) {
-      message = 'Oops something went wrong...';
+      message = <h1>Oops something went wrong...</h1>;
     }
     return (
       <div>
         <Header />
-        <div className="container-fluid main-height">
+        <div className="container main-height">
           <br />
-          {message.length > 0 ? (
-            <div className="main-vertical-align">
-              <h1 className="text-center mb-5">{message}</h1>
-            </div>
-          ) : (
+          {movieList.length > 0 ? (
             <div>
               <div className="alert alert-success" role="alert">
-                Search result:
+                "{title}" search result:
               </div>
               <div className="row">{result}</div>
+            </div>
+          ) : (
+            <div className="main-vertical-align">
+              <div className="d-flex justify-content-center">{message}</div>
             </div>
           )}
         </div>

@@ -20,7 +20,7 @@ class homePage extends Component {
     this.setState({ type: e.target.value });
   }
 
-  handleSubmit(e) {
+  handleSubmit() {
     const { title, year, type } = this.state;
     const arrary = [];
     let params = '';
@@ -54,7 +54,7 @@ class homePage extends Component {
     return (
       <div>
         <Header />
-        <div className="container-fluid main-height d-flex align-items-center justify-content-center">
+        <div className="container main-height d-flex align-items-center justify-content-center">
           <div className="d-flex flex-column">
             <h1 className="text-center mb-5">Let's find out...</h1>
             <div className="row">
@@ -77,23 +77,29 @@ class homePage extends Component {
                 />
               </div>
               <div className="col-12 col-sm-4">
-                <select
-                  className="custom-select w-75 mr-2"
-                  value={this.state.type}
-                  onChange={e => this.typeChange(e)}
-                >
-                  <option>Type</option>
-                  <option value="movie">movie</option>
-                  <option value="series">series</option>
-                  <option value="episode">episode</option>
-                </select>
-                <button
-                  className="btn btn-info"
-                  type="button"
-                  onClick={e => this.handleSubmit(e)}
-                >
-                  Go
-                </button>
+                <div className="row">
+                  <div className="col-9">
+                    <select
+                      className="custom-select"
+                      value={this.state.type}
+                      onChange={e => this.typeChange(e)}
+                    >
+                      <option>Type</option>
+                      <option value="movie">movie</option>
+                      <option value="series">series</option>
+                      <option value="episode">episode</option>
+                    </select>
+                  </div>
+                  <div className="col-3">
+                    <button
+                      className="btn btn-info"
+                      type="button"
+                      onClick={e => this.handleSubmit(e)}
+                    >
+                      Go
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

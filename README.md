@@ -3,6 +3,8 @@
 [![david-dm](https://david-dm.org/reactmaker/simple_react_startkit.svg)](https://david-dm.org/)
 [![Known Vulnerabilities](https://snyk.io/test/github/ReactMaker/simple_react_startkit/badge.svg?targetFile=package.json)](https://snyk.io/test/github/ReactMaker/simple_react_startkit?targetFile=package.json)
 
+# react-coding-challenge
+
 ## 需求配置 requirement
 
 - node `^6.11.5`
@@ -17,9 +19,3 @@
 | `lint`             | 檢查所有的 js 檔案有沒有符合 coding style                                                          |
 | `lint:fix`         | 檢查所有的 js 檔案有沒有符合 coding style ，如果是一些簡單的錯誤就會嘗試修復                       |
 | `deploy`           | 編譯整個網站成品後，上傳至 Github 靜態頁面，https://[Github 帳號].github.io/[Repositories Name]/#/ |
-
-# Simple React Startkit
-
-- How did you decide which technologies to use as part of your solution?
-- Are there any improvements you could make to your submission?
-- What would you do differently if you were allocated more time?

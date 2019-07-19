@@ -1,5 +1,5 @@
 {
-  "name": "react-coding-challenge",
+  "name": "OMDb-API",
   "description": "react webpack2 react-router example",
   "version": "2.0.0",
   "main": "src/index.js",

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { HashRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import home from './views/home';
 import search from './views/search';
 import item from './views/item';

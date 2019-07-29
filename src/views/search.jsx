@@ -10,7 +10,6 @@ class searchPage extends Component {
     this.state = {
       movieList: [],
       getResponse: false,
-      title: '',
       pagination: [1, 2, 3],
       lastPage: 0
     };
@@ -20,8 +19,6 @@ class searchPage extends Component {
 
   componentDidMount() {
     const query = this.props.location.state;
-    const qs = new URLSearchParams(query);
-    this.setState({ title: qs.get('s') });
     this.getMovieList(query);
   }
 
@@ -59,9 +56,8 @@ class searchPage extends Component {
   }
 
   render() {
-    const {
- movieList, getResponse, title, pagination
-} = this.state;
+    const { movieList, getResponse, pagination } = this.state;
+    const title = new URLSearchParams(this.props.location.state).get('s');
     let message = '';
     const result = movieList.map(list => (
       <div className="col-sm-6 col-md-4 col-lg-3" key={list.imdbID}>

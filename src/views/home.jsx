@@ -6,6 +6,10 @@ class homePage extends Component {
   constructor(props) {
     super(props);
     this.state = { title: '', year: '', type: '' };
+    this.titleChange = this.titleChange.bind(this);
+    this.yearChange = this.yearChange.bind(this);
+    this.typeChange = this.typeChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   titleChange(e) {
@@ -64,7 +68,7 @@ class homePage extends Component {
                   type="text"
                   className="form-control"
                   value={this.state.title}
-                  onChange={e => this.titleChange(e)}
+                  onChange={this.titleChange}
                 />
               </div>
               <div className="col-12 col-sm-4 d-flex align-items-center mb-3">
@@ -73,7 +77,7 @@ class homePage extends Component {
                   type="text"
                   className="form-control"
                   value={this.state.year}
-                  onChange={e => this.yearChange(e)}
+                  onChange={this.yearChange}
                 />
               </div>
               <div className="col-12 col-sm-4">
@@ -82,7 +86,7 @@ class homePage extends Component {
                     <select
                       className="custom-select"
                       value={this.state.type}
-                      onChange={e => this.typeChange(e)}
+                      onChange={this.typeChange}
                     >
                       <option>Type</option>
                       <option value="movie">movie</option>
@@ -94,7 +98,7 @@ class homePage extends Component {
                     <button
                       className="btn btn-info"
                       type="button"
-                      onClick={e => this.handleSubmit(e)}
+                      onClick={this.handleSubmit}
                     >
                       Go
                     </button>

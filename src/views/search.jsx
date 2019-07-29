@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/header';
 import Footer from '../components/footer';
@@ -7,7 +7,15 @@ import apikey from '../apikey.json';
 class searchPage extends Component {
   constructor(props) {
     super(props);
-    this.state = { movieList: [], getResponse: false, title: '' };
+    this.state = {
+      movieList: [],
+      getResponse: false,
+      title: '',
+      pagination: [1, 2, 3],
+      lastPage: 0
+    };
+    this.changePagination = this.changePagination.bind(this);
+    this.changePage = this.changePage.bind(this);
   }
 
   componentDidMount() {
@@ -17,20 +25,43 @@ class searchPage extends Component {
     this.getMovieList(query);
   }
 
-  getMovieList = (query) => {
-    fetch(`http://www.omdbapi.com/?apikey=${apikey.key}&${query}`)
+  getMovieList = (query, page = 1) => {
+    fetch(`http://www.omdbapi.com/?apikey=${apikey.key}&${query}&page=${page}`)
       .then(response => response.json())
       .then((data) => {
         this.setState({ getResponse: true });
         if (data.Response === 'True') {
-          this.setState({ movieList: data.Search });
+          this.setState({
+            movieList: data.Search,
+            lastPage: Math.ceil(data.totalResults / 30)
+          });
         }
       })
       .catch(error => console.error(error));
   };
 
+  changePagination(e) {
+    let newPagination = [];
+    const { pagination, lastPage } = this.state;
+    if (e.target.value === 'previous') {
+      newPagination = pagination[0] - 1 > 0 ? pagination.map(item => item - 1) : pagination;
+    } else {
+      newPagination = pagination[2] + 1 < lastPage
+          ? pagination.map(item => item + 1)
+          : pagination;
+    }
+    this.setState({ pagination: newPagination });
+  }
+
+  changePage(e) {
+    const query = this.props.location.state;
+    this.getMovieList(query, e.target.value);
+  }
+
   render() {
-    const { movieList, getResponse, title } = this.state;
+    const {
+ movieList, getResponse, title, pagination
+} = this.state;
     let message = '';
     const result = movieList.map(list => (
       <div className="col-sm-6 col-md-4 col-lg-3" key={list.imdbID}>
@@ -51,6 +82,18 @@ class searchPage extends Component {
         </Link>
       </div>
     ));
+    const pages = pagination.map(item => (
+      <li className="page-item" key={item}>
+        <button
+          className="page-link"
+          type="button"
+          value={item}
+          onClick={this.changePage}
+        >
+          {item}
+        </button>
+      </li>
+    ));
     if (!getResponse) {
       message = (
         <div className="spinner-border" role="status">
@@ -62,17 +105,42 @@ class searchPage extends Component {
       message = <h1>Oops something went wrong...</h1>;
     }
     return (
-      <div>
+      <Fragment>
         <Header />
         <div className="container main-height">
           <br />
           {movieList.length > 0 ? (
-            <div>
+            <Fragment>
               <div className="alert alert-success" role="alert">
                 "{title}" search result:
               </div>
               <div className="row">{result}</div>
-            </div>
+              <nav>
+                <ul className="pagination d-flex justify-content-center">
+                  <li className="page-item">
+                    <button
+                      className="page-link"
+                      type="button"
+                      onClick={this.changePagination}
+                      value="previous"
+                    >
+                      &laquo;
+                    </button>
+                  </li>
+                  {pages}
+                  <li className="page-item">
+                    <button
+                      className="page-link"
+                      type="button"
+                      onClick={this.changePagination}
+                      value="next"
+                    >
+                      &raquo;
+                    </button>
+                  </li>
+                </ul>
+              </nav>
+            </Fragment>
           ) : (
             <div className="main-vertical-align">
               <div className="d-flex justify-content-center">{message}</div>
@@ -80,7 +148,7 @@ class searchPage extends Component {
           )}
         </div>
         <Footer />
-      </div>
+      </Fragment>
     );
   }
 }

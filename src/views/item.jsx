@@ -16,9 +16,13 @@ class itemPage extends Component {
 
   getMovie(movieID) {
     fetch(`http://www.omdbapi.com/?apikey=${apikey.key}&i=${movieID}`)
-      .then(response => response.json())
+      .then((response) => {
+        if (response.status === 200) {
+          this.setState({ getResponse: true });
+        }
+        return response.json();
+      })
       .then((data) => {
-        this.setState({ getResponse: true });
         if (data.Response === 'True') {
           this.setState({ movieItem: data });
         }
